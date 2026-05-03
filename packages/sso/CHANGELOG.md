@@ -1,5 +1,21 @@
 # @better-auth/sso
 
+## 1.6.10
+
+### Patch Changes
+
+- [#9398](https://github.com/better-auth/better-auth/pull/9398) [`006e809`](https://github.com/better-auth/better-auth/commit/006e809b92d4a933e52a4684b74419bc419530dc) Thanks [@Craga89](https://github.com/Craga89)! - fix(sso): use findSAMLProvider in spMetadata so defaultSSO providers resolve
+
+  `/sso/saml2/sp/metadata` was the only SAML endpoint that called `adapter.findOne`
+  directly, so providers configured via `defaultSSO` (which are not persisted to the
+  database) caused it to throw `NOT_FOUND`. The endpoint now uses the shared
+  `findSAMLProvider` helper, matching `signInSSO`, the SAML callback handler, and
+  `signOut`.
+
+- Updated dependencies [[`1e0f26d`](https://github.com/better-auth/better-auth/commit/1e0f26d4c83608d14a533f33458ade0f8504fd16), [`906b7b3`](https://github.com/better-auth/better-auth/commit/906b7b34a710d49798e166395da2bcd2be13ef46), [`88a7c67`](https://github.com/better-auth/better-auth/commit/88a7c678f4db3f7da580d53071b2595b92354a45), [`c1336c5`](https://github.com/better-auth/better-auth/commit/c1336c563d45f93ca3fd4da4e6c767fc267d86d0), [`2220a6d`](https://github.com/better-auth/better-auth/commit/2220a6d6c25ebd24c8568131636389dc0c12f82b)]:
+  - better-auth@1.6.10
+  - @better-auth/core@1.6.10
+
 ## 1.6.9
 
 ### Patch Changes

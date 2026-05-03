@@ -1,5 +1,35 @@
 # @better-auth/oauth-provider
 
+## 1.6.10
+
+### Patch Changes
+
+- [#9344](https://github.com/better-auth/better-auth/pull/9344) [`408a307`](https://github.com/better-auth/better-auth/commit/408a3076bdd5b450c96bdad82be797ac8a8d3f83) Thanks [@gustavovalverde](https://github.com/gustavovalverde)! - fix(oauth-provider): bind consent-accept postLogin skip to the signing session
+
+  When `authorize` emits a signed redirect past the postLogin gate it now
+  records `ba_pl=<sessionId>` in the signed authorization query. On consent
+  accept, `authorizeEndpoint` is called with `{ postLogin: true }` only when
+  the incoming signed query's marker matches the current session's id;
+  otherwise it re-enters `authorize` with `postLogin.shouldRedirect` still
+  enforced. Resolves the post-consent bounce back to the postLogin page for
+  `setActive`-driven flows, blocks a direct POST to `/oauth2/consent` with
+  a pre-postLogin signed query from skipping `shouldRedirect`, and prevents
+  a different or newly logged-in session from re-using another session's
+  marker to skip `shouldRedirect`.
+
+- [#9344](https://github.com/better-auth/better-auth/pull/9344) [`408a307`](https://github.com/better-auth/better-auth/commit/408a3076bdd5b450c96bdad82be797ac8a8d3f83) Thanks [@gustavovalverde](https://github.com/gustavovalverde)! - fix(oauth-provider): complete stale `prompt=login consent` continuations after forced login
+
+  Consent continuations now carry the signed authorization request issue time and
+  only clear a lingering `login` prompt when the active session was created for
+  that request. This preserves forced reauthentication semantics while avoiding
+  the loop where a completed reauthentication is sent back to `/login`.
+
+- [#9324](https://github.com/better-auth/better-auth/pull/9324) [`6b03a45`](https://github.com/better-auth/better-auth/commit/6b03a45a14d905aa070068290adfedfd4c5f4e2d) Thanks [@dvanmali](https://github.com/dvanmali)! - Make `sessionId` optional in refresh token types to match the refresh token schema.
+
+- Updated dependencies [[`1e0f26d`](https://github.com/better-auth/better-auth/commit/1e0f26d4c83608d14a533f33458ade0f8504fd16), [`906b7b3`](https://github.com/better-auth/better-auth/commit/906b7b34a710d49798e166395da2bcd2be13ef46), [`88a7c67`](https://github.com/better-auth/better-auth/commit/88a7c678f4db3f7da580d53071b2595b92354a45), [`c1336c5`](https://github.com/better-auth/better-auth/commit/c1336c563d45f93ca3fd4da4e6c767fc267d86d0), [`2220a6d`](https://github.com/better-auth/better-auth/commit/2220a6d6c25ebd24c8568131636389dc0c12f82b)]:
+  - better-auth@1.6.10
+  - @better-auth/core@1.6.10
+
 ## 1.6.9
 
 ### Patch Changes

@@ -1,5 +1,30 @@
 # better-auth
 
+## 1.6.10
+
+### Patch Changes
+
+- [#8339](https://github.com/better-auth/better-auth/pull/8339) [`1e0f26d`](https://github.com/better-auth/better-auth/commit/1e0f26d4c83608d14a533f33458ade0f8504fd16) Thanks [@ping-maxwell](https://github.com/ping-maxwell)! - fix(captcha): breaks email-otp flow
+
+- [#9387](https://github.com/better-auth/better-auth/pull/9387) [`906b7b3`](https://github.com/better-auth/better-auth/commit/906b7b34a710d49798e166395da2bcd2be13ef46) Thanks [@bytaesu](https://github.com/bytaesu)! - The bearer plugin now produces a single entry per cookie name when merging
+  its session token into the request `Cookie` header. Previously the merged
+  header could carry two entries for the same name if the request already
+  had a stale session cookie, which would surface to downstream code that
+  picks the first occurrence.
+
+- [#9268](https://github.com/better-auth/better-auth/pull/9268) [`88a7c67`](https://github.com/better-auth/better-auth/commit/88a7c678f4db3f7da580d53071b2595b92354a45) Thanks [@ping-maxwell](https://github.com/ping-maxwell)! - fix: openAPI schema for POST /sign-in/social mis-declares required fields
+
+- [#9239](https://github.com/better-auth/better-auth/pull/9239) [`c1336c5`](https://github.com/better-auth/better-auth/commit/c1336c563d45f93ca3fd4da4e6c767fc267d86d0) Thanks [@GautamBytes](https://github.com/GautamBytes)! - Fix `organization.setActiveTeam` so it only accepts teams from the current active organization.
+
+- Updated dependencies [[`2220a6d`](https://github.com/better-auth/better-auth/commit/2220a6d6c25ebd24c8568131636389dc0c12f82b)]:
+  - @better-auth/core@1.6.10
+  - @better-auth/drizzle-adapter@1.6.10
+  - @better-auth/kysely-adapter@1.6.10
+  - @better-auth/memory-adapter@1.6.10
+  - @better-auth/mongo-adapter@1.6.10
+  - @better-auth/prisma-adapter@1.6.10
+  - @better-auth/telemetry@1.6.10
+
 ## 1.6.9
 
 ### Patch Changes
